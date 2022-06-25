@@ -19,23 +19,23 @@ public class CalcController {
     }
 
     @GetMapping(path ="/plus")
-    public String plus(@RequestParam("num1") Integer num1,
-                       @RequestParam("num2") Integer num2){
+    public String plus(@RequestParam(value="num1", required = false) Integer num1,
+                       @RequestParam(value="num2", required = false) Integer num2){
         return  checkParameters(num1, num2) + num1 + " + " + num2 + " = " + calculateService.Addition(num1, num2);
     }
     @GetMapping(path ="/minus")
-    public String minus(@RequestParam(value="num1") Integer num1,
-                        @RequestParam(value="num2") Integer num2) {
+    public String minus(@RequestParam(value="num1", required = false) Integer num1,
+                        @RequestParam(value="num2", required = false) Integer num2) {
         return  checkParameters(num1, num2)+ num1 + " - " + num2 + " = " + calculateService.Subtraction(num1, num2);
     }
     @GetMapping(path ="/multiply")
-    public String multiply(@RequestParam(value="num1") Integer num1,
-                           @RequestParam(value="num2") Integer num2) {
+    public String multiply(@RequestParam(value="num1", required = false) Integer num1,
+                           @RequestParam(value="num2", required = false) Integer num2) {
         return checkParameters(num1, num2) + num1 + " * " + num2 + " = " + calculateService.Multiply(num1, num2);
     }
     @GetMapping(path ="/divide")
-    public String divide(@RequestParam(value="num1") Integer num1,
-                         @RequestParam(value="num2") Integer num2) {
+    public String divide(@RequestParam(value="num1", required = false) Integer num1,
+                         @RequestParam(value="num2", required = false) Integer num2) {
         if (num2 == 0){
             return "DIVISION ON ZERO!";
         }
