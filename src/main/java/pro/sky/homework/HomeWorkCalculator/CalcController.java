@@ -19,29 +19,29 @@ public class CalcController {
     }
 
     @GetMapping(path ="/plus")
-    public String plus(@RequestParam("num1") int num1,
-                       @RequestParam("num2") int num2){
+    public String plus(@RequestParam("num1") Integer num1,
+                       @RequestParam("num2") Integer num2){
         return  checkParameters(num1, num2) + num1 + " + " + num2 + " = " + calculateService.Addition(num1, num2);
     }
     @GetMapping(path ="/minus")
-    public String minus(@RequestParam(value="num1") int num1,
-                        @RequestParam(value="num2") int num2) {
+    public String minus(@RequestParam(value="num1") Integer num1,
+                        @RequestParam(value="num2") Integer num2) {
         return  checkParameters(num1, num2)+ num1 + " - " + num2 + " = " + calculateService.Subtraction(num1, num2);
     }
     @GetMapping(path ="/multiply")
-    public String multiply(@RequestParam(value="num1") int num1,
-                           @RequestParam(value="num2") int num2) {
+    public String multiply(@RequestParam(value="num1") Integer num1,
+                           @RequestParam(value="num2") Integer num2) {
         return checkParameters(num1, num2) + num1 + " * " + num2 + " = " + calculateService.Multiply(num1, num2);
     }
     @GetMapping(path ="/divide")
-    public String divide(@RequestParam(value="num1") int num1,
-                         @RequestParam(value="num2") int num2) {
+    public String divide(@RequestParam(value="num1") Integer num1,
+                         @RequestParam(value="num2") Integer num2) {
         if (num2 == 0){
             return "DIVISION ON ZERO!";
         }
         return  checkParameters(num1, num2) + num1 + " : " + num2 + " = " + calculateService.Division(num1, num2);
     }
-    public String checkParameters(int a, int b){
+    public String checkParameters(Integer a, Integer b){
         if (Objects.isNull(a)||Objects.isNull(b)){
             return "Both parameters required!";}
         return "Result of calculation: ";
