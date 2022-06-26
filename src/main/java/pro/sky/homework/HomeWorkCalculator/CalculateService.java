@@ -15,7 +15,7 @@ public class CalculateService {
     public Integer Multiply(Integer num1, Integer num2){
         return num1 * num2;
     }
-    public Number Division(Integer num1, Integer num2){
+    public Double Division(Integer num1, Integer num2){
         return (double) num1 / num2;
     }
 }
