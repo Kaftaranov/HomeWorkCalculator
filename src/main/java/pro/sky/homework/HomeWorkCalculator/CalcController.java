@@ -19,31 +19,37 @@ public class CalcController {
     }
 
     @GetMapping(path ="/plus")
-    public String plus(@RequestParam("num1") int num1,
-                       @RequestParam("num2") int num2){
-        return  checkParameters(num1, num2) + num1 + " + " + num2 + " = " + calculateService.Addition(num1, num2);
+    public String plus(@RequestParam(value="num1", required = false) Integer num1,
+                       @RequestParam(value="num2", required = false) Integer num2){
+        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " * " + num2 + " = "
+                + calculateService.Addition(num1, num2);}
+        else {return "Both parameters required!";}
     }
     @GetMapping(path ="/minus")
-    public String minus(@RequestParam(value="num1") int num1,
-                        @RequestParam(value="num2") int num2) {
-        return  checkParameters(num1, num2)+ num1 + " - " + num2 + " = " + calculateService.Subtraction(num1, num2);
+    public String minus(@RequestParam(value="num1", required = false) Integer num1,
+                        @RequestParam(value="num2", required = false) Integer num2) {
+        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " - " + num2 + " = "
+                + calculateService.Subtraction(num1, num2);}
+        else {return "Both parameters required!";}
     }
     @GetMapping(path ="/multiply")
-    public String multiply(@RequestParam(value="num1") int num1,
-                           @RequestParam(value="num2") int num2) {
-        return checkParameters(num1, num2) + num1 + " * " + num2 + " = " + calculateService.Multiply(num1, num2);
+    public String multiply(@RequestParam(value="num1", required = false) Integer num1,
+                           @RequestParam(value="num2", required = false) Integer num2) {
+        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " * " + num2 + " = "
+                + calculateService.Multiply(num1, num2);}
+        else {return "Both parameters required!";}
     }
     @GetMapping(path ="/divide")
-    public String divide(@RequestParam(value="num1") int num1,
-                         @RequestParam(value="num2") int num2) {
-        if (num2 == 0){
+    public String divide(@RequestParam(value="num1", required = false) Integer num1,
+                         @RequestParam(value="num2", required = false) Integer num2) {
+        if (num2 != null && num2 == 0){
             return "DIVISION ON ZERO!";
         }
-        return  checkParameters(num1, num2) + num1 + " : " + num2 + " = " + calculateService.Division(num1, num2);
+        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " : " + num2 + " = "
+                + calculateService.Division(num1, num2);}
+        else {return "Both parameters required!";}
     }
-    public String checkParameters(int a, int b){
-        if (Objects.isNull(a)||Objects.isNull(b)){
-            return "Both parameters required!";}
-        return "Result of calculation: ";
+    public boolean checkParameters(Integer a, Integer b){
+     return (!Objects.isNull(a)&&!Objects.isNull(b));
     }
 }
