@@ -42,7 +42,7 @@ public class CalcController {
     @GetMapping(path ="/divide")
     public String divide(@RequestParam(value="num1", required = false) Integer num1,
                          @RequestParam(value="num2", required = false) Integer num2) {
-        if (num2 == 0){
+        if (num2 != null && num2 == 0){
             return "DIVISION ON ZERO!";
         }
         if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " : " + num2 + " = "
