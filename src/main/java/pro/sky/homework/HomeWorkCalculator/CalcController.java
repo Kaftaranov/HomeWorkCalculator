@@ -21,35 +21,21 @@ public class CalcController {
     @GetMapping(path ="/plus")
     public String plus(@RequestParam(value="num1", required = false) Integer num1,
                        @RequestParam(value="num2", required = false) Integer num2){
-        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " * " + num2 + " = "
-                + calculateService.Addition(num1, num2);}
-        else {return "Both parameters required!";}
+         return  calculateService.Addition(num1, num2);
     }
     @GetMapping(path ="/minus")
     public String minus(@RequestParam(value="num1", required = false) Integer num1,
                         @RequestParam(value="num2", required = false) Integer num2) {
-        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " - " + num2 + " = "
-                + calculateService.Subtraction(num1, num2);}
-        else {return "Both parameters required!";}
+        return  calculateService.Subtraction(num1, num2);
     }
     @GetMapping(path ="/multiply")
     public String multiply(@RequestParam(value="num1", required = false) Integer num1,
                            @RequestParam(value="num2", required = false) Integer num2) {
-        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " * " + num2 + " = "
-                + calculateService.Multiply(num1, num2);}
-        else {return "Both parameters required!";}
+        return calculateService.Multiply(num1, num2);
     }
     @GetMapping(path ="/divide")
     public String divide(@RequestParam(value="num1", required = false) Integer num1,
                          @RequestParam(value="num2", required = false) Integer num2) {
-        if (num2 != null && num2 == 0){
-            return "DIVISION ON ZERO!";
-        }
-        if (checkParameters(num1, num2)) {return "Result of calculation is " + num1 + " : " + num2 + " = "
-                + calculateService.Division(num1, num2);}
-        else {return "Both parameters required!";}
-    }
-    public boolean checkParameters(Integer a, Integer b){
-     return (!Objects.isNull(a)&&!Objects.isNull(b));
+        return calculateService.Division(num1, num2);
     }
 }
