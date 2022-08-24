@@ -1,22 +1,48 @@
 package pro.sky.homework.HomeWorkCalculator;
 
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+
 @Service
 public class CalculateService {
     public String Greeting(){
         return "<h1>Welcome to calculator!</h1>";
     }
-    public int Addition (int num1, int num2){
-        return  num1 + num2;
+    public String Addition (Integer num1, Integer num2){
+        if (checkParameters(num1, num2)){
+            return "Result of calculation is " + num1 + " + " + num2 + " = "+ (num1 + num2);
+        }
+        else {
+           return "Both parameters required!";
+        }
     }
-    public int Subtraction (int num1, int num2) {
-        return  num1 - num2;
+    public String Subtraction (Integer num1, Integer num2) {
+        if (checkParameters(num1, num2)) {
+            return "Result of calculation is " + num1 + " - " + num2 + " = " + (num1 - num2);
+        }else{
+            return "Both parameters required!";
+        }
     }
-    public int Multiply(int num1, int num2){
-        return num1 * num2;
+    public String Multiply(Integer num1, Integer num2){
+        if (checkParameters(num1, num2)) {
+            return "Result of calculation is " + num1 + " * " + num2 + " = " + (num1 * num2);
+        }else{
+            return "Both parameters required!";
+        }
     }
-    public Number Division(int num1, int num2){
-        return (double) num1 / num2;
+    public String Division(Integer num1, Integer num2){
+        if (num2 == 0){
+            throw new IllegalArgumentException();
+        }
+        if (checkParameters(num1, num2)) {
+            return "Result of calculation is " + num1 + " : " + num2 + " = " + ((double)num1 / (double)num2);
+        }else {
+            return "Both parameters required!";
+        }
+    }
+    public boolean checkParameters(Integer a, Integer b){
+        return (!Objects.isNull(a)&&!Objects.isNull(b));
     }
 }
 
