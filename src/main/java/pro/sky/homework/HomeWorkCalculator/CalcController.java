@@ -4,8 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 @RestController
 @RequestMapping("/calculator")
 public class CalcController {
@@ -17,7 +15,6 @@ public class CalcController {
     public String Greeting() {
         return calculateService.Greeting();
     }
-
     @GetMapping(path ="/plus")
     public String plus(@RequestParam(value="num1", required = false) Integer num1,
                        @RequestParam(value="num2", required = false) Integer num2){

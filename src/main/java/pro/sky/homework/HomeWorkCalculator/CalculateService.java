@@ -32,10 +32,11 @@ public class CalculateService {
         }
     }
     public String Division(Integer num1, Integer num2){
-        if (num2 != null && num2 == 0){
-            throw new IllegalArgumentException("DIVISION BY ZERO!");}
+        if (num2 == 0){
+            throw new IllegalArgumentException();
+        }
         if (checkParameters(num1, num2)) {
-            return "Result of calculation is " + num1 + " : " + num2 + " = " + (num1 / num2);
+            return "Result of calculation is " + num1 + " : " + num2 + " = " + ((double)num1 / (double)num2);
         }else {
             return "Both parameters required!";
         }
